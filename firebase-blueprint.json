@@ -1,0 +1,124 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account information and roles",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["ADMIN", "COACH", "ANALYST", "MANAGER", "SPECTATOR"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "name", "email", "role"]
+    },
+    "Team": {
+      "title": "Team",
+      "description": "Kabaddi team details",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "shortName": { "type": "string" },
+        "logo": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "shortName", "ownerId"]
+    },
+    "Player": {
+      "title": "Player",
+      "description": "Player in a team",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "number": { "type": "integer" },
+        "role": { "type": "string", "enum": ["RAIDER", "DEFENDER", "ALL_ROUNDER"] },
+        "image": { "type": "string" },
+        "stats": {
+          "type": "object",
+          "properties": {
+            "raids": { "type": "integer" },
+            "tackles": { "type": "integer" },
+            "points": { "type": "integer" },
+            "efficiency": { "type": "number" }
+          }
+        }
+      },
+      "required": ["name", "number", "role"]
+    },
+    "Match": {
+      "title": "Match",
+      "description": "Kabaddi match session",
+      "type": "object",
+      "properties": {
+        "homeTeamId": { "type": "string" },
+        "awayTeamId": { "type": "string" },
+        "date": { "type": "string", "format": "date-time" },
+        "isLive": { "type": "boolean" },
+        "half": { "type": "integer" },
+        "score": {
+          "type": "object",
+          "properties": {
+            "home": { "type": "integer" },
+            "away": { "type": "integer" }
+          }
+        },
+        "revivalQueue": {
+          "type": "object",
+          "properties": {
+            "home": { "type": "array", "items": { "type": "string" } },
+            "away": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "momentum": { "type": "number" },
+        "winProbability": {
+          "type": "object",
+          "properties": {
+            "home": { "type": "number" },
+            "away": { "type": "number" }
+          }
+        }
+      },
+      "required": ["homeTeamId", "awayTeamId", "isLive"]
+    },
+    "MatchAction": {
+      "title": "Match Action",
+      "description": "Specific event during a match",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["RAID", "TACKLE", "BONUS", "ALL_OUT", "TIMEOUT", "REVIVAL"] },
+        "result": { "type": "string" },
+        "points": { "type": "integer" },
+        "playerId": { "type": "string" },
+        "opponentPlayerId": { "type": "string" },
+        "teamId": { "type": "string" },
+        "timestamp": { "type": "integer" },
+        "zone": { "type": "string" }
+      },
+      "required": ["type", "result", "points", "teamId", "timestamp"]
+    }
+  },
+  "firestore": {
+    "users": {
+        "schema": "User",
+        "description": "User profiles"
+    },
+    "teams": {
+        "schema": "Team",
+        "description": "Collection of teams"
+    },
+    "teams/{teamId}/players": {
+        "schema": "Player",
+        "description": "Players belonging to a team"
+    },
+    "matches": {
+        "schema": "Match",
+        "description": "Global match collection"
+    },
+    "matches/{matchId}/actions": {
+        "schema": "MatchAction",
+        "description": "Actions within a match"
+    }
+  }
+}

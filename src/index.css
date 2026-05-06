@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  --color-brand-orange: #FF6B00;
+  --color-brand-dark: #000000;
+  --color-brand-surface: #0A0A0C;
+  --color-brand-obsidian: #121214;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-dark text-white font-sans antialiased;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(255,107,0,0.1) 0%, transparent 50%),
+      radial-gradient(circle at 0% 100%, rgba(59,130,246,0.05) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+}
+
+.glass-card {
+  @apply bg-brand-obsidian/40 backdrop-blur-xl border border-white/5 shadow-2xl;
+}
+
+.obsidian-panel {
+  @apply bg-brand-surface border-r border-white/5;
+}
+
+.cyber-border {
+  position: relative;
+}
+
+.cyber-border::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--color-brand-orange);
+  border-bottom: 2px solid var(--color-brand-orange);
+  opacity: 0.5;
+}
+
+.orange-glow {
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.2);
+}
+
+.stadium-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.court-line {
+  @apply border-white/10 relative;
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.3; }
+}
+
+.momentum-meter {
+  @apply h-1.5 w-full bg-white/5 rounded-full overflow-hidden flex;
+}
+
+.momentum-value {
+  @apply h-full transition-all duration-700 ease-out;
+}
+
+.sports-stat-label {
+  @apply text-[10px] uppercase tracking-widest text-white/40 font-bold mb-1;
+}
+
+.sports-stat-value {
+  @apply text-2xl font-display font-bold text-white;
+}
+
+@keyframes heat-throb {
+  0%, 100% { filter: brightness(1) drop-shadow(0 0 5px rgba(255, 107, 0, 0.2)); }
+  50% { filter: brightness(1.3) drop-shadow(0 0 15px rgba(255, 107, 0, 0.4)); }
+}
+
+.animate-heat-throb {
+  animation: heat-throb 3s ease-in-out infinite;
+}
+
+.heat-zone-transition {
+  transition: background-color 1s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 1s cubic-bezier(0.4, 0, 0.2, 1),
+              scale 0.5s ease;
+}
