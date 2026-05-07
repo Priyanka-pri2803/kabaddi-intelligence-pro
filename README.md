@@ -19,7 +19,7 @@ src/
 │    └── ui/
 ├── pages/        # Main application views
 ├── services/     # External integrations Layer
-│    ├── ai/      # Gemini AI integration
+│    ├── ai/      # Tactical intelligence engine
 │    ├── auth/    # Firebase Auth
 │    ├── database/# Firestore Match & Player management
 │    └── realtime/# Real-time sync mechanisms
@@ -32,7 +32,7 @@ src/
 
 ## Core Features
 - **Cinematic UX**: Immersive stadium-grid atmosphere with fluid Framer Motion transitions.
-- **AI Tactical Feed**: Generates real-time strategic insights using Google Gemini 2.0 Flash.
+- **AI Tactical Feed**: Generates real-time strategic insights using an advanced tactical intelligence engine.
 - **Match Logger**: Dynamic court event capture with integrated raid timers and momentum tracking.
 - **Spatial Matrix**: 2D heatmap visualization for zone-based tactical analysis.
 - **Cloud Persistence**: Fully integrated with Firebase Firestore for cross-session data stability.
@@ -50,5 +50,4 @@ Compatible with:
 - **Backend**: Firebase / Render
 - **Database**: Firebase Firestore
 
-## AI Workflow
-The platform utilizes the `gemini-service` to process live match telemetry. Every 5 tactical actions, the engine triggers a pattern-analysis prompt to Gemini, returning structured JSON insights used to calculate win probabilities and personnel efficiency.
+The platform uses an AI-powered tactical intelligence engine to process live match telemetry and generate structured strategic insights, including momentum analysis, win probability estimation, and personnel efficiency evaluation.
